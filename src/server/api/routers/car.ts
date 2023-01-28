@@ -5,8 +5,8 @@ import { createCarSchema } from "../schema/car.schema";
 export const carRouter = createTRPCRouter({
   addNewCar: publicProcedure
     .input(createCarSchema)
-    .mutation(({ ctx, input }) => {
-      return ctx.prisma.car.create({
+    .mutation(async ({ ctx, input }) => {
+      return await ctx.prisma.car.create({
         data: { img: input.img, title: input.title },
       });
     }),
